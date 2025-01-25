@@ -1,43 +1,34 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 /**
  * @swagger
- * /predictions/random:
+ * /prediction/random:
  *   get:
- *     summary: Returns a random prediction
+ *     tags:    
+ *       - Prediction
+ *     description: Returns a list of predictions
+ *     produces:
+ *       - application/json
  *     responses:
  *       200:
- *         description: A random prediction
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 prediction:
- *                   type: string
- *                   example: "Today is your lucky day!"
+ *         description: A list of predictions
  */
+router.get('/random', (req, res) => {
+    const predictions = [
+  "Сьогодні твоя посмішка зарядить оточуючих позитивом!",
+  "Не бійся ризикувати – удача вже на твоєму боці.",
+  "Твоя доброта повернеться до тебе втричі.",
+  "Гарна новина вже на шляху до тебе.",
+  "Спробуй щось нове – це приведе тебе до несподіваного щастя.",
+  "Твоя мрія вже ближче, ніж здається.",
+  "Покупка цього тижня стане особливо вдалою.",
+  "Хтось поруч із тобою зараз дуже цінує твою підтримку.",
+  "Навіть найменший крок вперед наблизить тебе до великої перемоги.",
+  "Сьогодні – чудовий день для початку нового проекту."
+];
 
-
-const predictions = [
-    "Today is your lucky day!",
-    "You will achieve something great soon.",
-    "A surprise is waiting for you around the corner.",
-    "An old friend will reach out to you.",
-    "You will discover a hidden talent.",
-    "Hard work will pay off in unexpected ways.",
-    "A new opportunity is on the horizon.",
-    "Happiness will come from an unexpected source.",
-    "You will meet someone who changes your perspective.",
-    "Trust your instincts—they will lead you to success."
-  ];
-
-router.get("/random", (req, res) => {
-    const randomPrediction = predictions[Math.floor(Math.random() * predictions.length)];
-    res.json({ prediction: randomPrediction }).status(200);
-});
-  
-
+res.send(predictions[Math.floor(Math.random() * predictions.length)]).status(200);
+})
 
 module.exports = router;

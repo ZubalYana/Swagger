@@ -1,73 +1,40 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
+/**
+ * @swagger
+ * /products:
+ *   get:
+ *     tags:
+ *       - Products
+ *     description: Returns a list of products     
+ *     produces:
+ *       - application/json 
+ *     responses:
+ *       200:     
+ *         description: A list of products
+ */
+router.get('/products', (req, res) => {
+    res.json({name: "product 1"}).status(200);
+})
+
 
 /**
  * @swagger
- * /products/products:
- *   get:
- *     summary: Returns the list of all products
- *     responses:
- *       200:
- *         description: A list of products
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 products:
- *                   type: array
- *                   items:       
- *                     $ref: '#/components/schemas/Product'    
+ * /products:
  *   post:
- *     summary: Create a new product
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Product'
+ *     tags:
+ *       - Products
+ *     description: Returns a list of products     
+ *     produces:
+ *       - application/json 
  *     responses:
- *       201:  
- *         description: The product was successfully created
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Product'
- * 
- * components:
- *   schemas:
- *     Product:
- *       type: object
- *       properties:
- *         id:
- *           type: integer
- *           description: The product ID
- *         name:
- *           type: string
- *           description: The product name
- *       required:
- *         - id
- *         - name
- * 
- */
-
-router.get("/products", (req, res) => {
-    res.json({
-        products: [
-            {
-                id: 1,
-                name: "Product 1"
-            },
-            {
-                id: 2,
-                name: "Product 2"
-            }
-        ]
-    }).status(200);
-});
-
-router.post("/products", (req, res) => {
-    const product = req.body;
-    res.json(product).status(201);
+ *       200:     
+ *         description: A list of products
+ */ 
+router.post('/products', (req, res) => {
+   const user = req.body;
+   res.status(201).json(user);
 })
-module.exports = router;
+
+
+module.exports = router
