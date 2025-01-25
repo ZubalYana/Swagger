@@ -6,7 +6,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
-
+const predictionRoutes = require('./routes/prediction');
 const swaggerOptions = {
     definition: {
         openapi: '3.0.0',
@@ -31,6 +31,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(express.json());
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
+app.use('/predictions', predictionRoutes);
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
